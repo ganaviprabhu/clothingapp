@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: clothing-app        # Unique name for your service
+    env: node                 # Environment: node, python, docker, etc.
+    plan: starter             # Render plan
+    region: oregon            # Choose region
+    branch: main              # Branch to deploy from
+    buildCommand: npm install
+    startCommand: npm start
