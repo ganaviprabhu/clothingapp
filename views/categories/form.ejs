@@ -1,0 +1,6 @@
+<h1><%= category.id ? 'Edit' : 'Create' %> Category</h1>
+<form method="POST" action="<%= category.id ? '/categories/edit/' + category.id : '/categories/create' %>">
+  <input type="text" name="name" value="<%= category.name || '' %>" placeholder="Name" required>
+  <textarea name="description" placeholder="Description"><%= category.description || '' %></textarea>
+  <button type="submit">Save</button>
+</form>

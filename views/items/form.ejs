@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= item.id ? 'Edit Item' : 'Create Item' %></title>
+</head>
+<body>
+  <h1><%= item.id ? 'Edit Item' : 'Create Item' %></h1>
+
+  <form method="POST" action="<%= item.id ? '/items/edit/' + item.id : '/items/create' %>">
+    <!-- Item Name -->
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="<%= item.name || '' %>" required>
+    </div>
+
+    <!-- Item Description -->
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" rows="4"><%= item.description || '' %></textarea>
+    </div>
+
+    <!-- Price -->
+    <div>
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" step="0.01" value="<%= item.price || 0 %>" required>
+    </div>
+
+    <!-- Quantity -->
+    <div>
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" value="<%= item.quantity || 0 %>" required>
+    </div>
+
+    <!-- Category Dropdown -->
+    <div>
+      <label for="category">Category:</label>
+      <select name="category_id" id="category">
+        <option value="">--Select Category--</option>
+        <% categories.forEach(cat => { %>
+          <option value="<%= cat.id %>" <%= item.category_id === cat.id ? 'selected' : '' %>><%= cat.name %></option>
+        <% }) %>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+      <button type="submit"><%= item.id ? 'Update Item' : 'Create Item' %></button>
+      <a href="/items">Cancel</a>
+    </div>
+  </form>
+</body>
+</html>
